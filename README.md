@@ -43,7 +43,7 @@
 
 > 힌트: @ControllerAdvice 어노테이션이 적용되있는 com.github.prgrms.errors.GeneralExceptionHandler 구현을 참고하세요.
 
-이미 구현되 있는 아래 2개 API는 응답 포맷이 `요건 1` 정의에 맞지 않기 때문에 수정이 필요합니다.
+이미 구현되어 있는 아래 2개 API는 응답 포맷이 `요건 1` 정의에 맞지 않기 때문에 수정이 필요합니다.
 
 - 단일 상품 조회: /api/products/{id}
   * 구현위치: com.github.prgrms.products.ProductRestController.findById 메소드
