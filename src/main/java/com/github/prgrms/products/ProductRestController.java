@@ -10,6 +10,9 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+import static com.github.prgrms.utils.ApiUtils.ApiResult;
+import static com.github.prgrms.utils.ApiUtils.success;
+
 @RestController
 @RequestMapping("api/products")
 public class ProductRestController {
@@ -20,20 +23,21 @@ public class ProductRestController {
     this.productService = productService;
   }
 
-  // FIXME `요건 1` 정의에 맞게 응답 타입 수정이 필요합니다.
   @GetMapping(path = "{id}")
-  public ProductDto findById(@PathVariable Long id) {
-    return productService.findById(id)
+  public ApiResult<ProductDto> findById(@PathVariable Long id) {
+    ProductDto dto = productService.findById(id)
       .map(ProductDto::new)
       .orElseThrow(() -> new NotFoundException("Could not found product for " + id));
+
+    return success(dto);
   }
 
-  // FIXME `요건 1` 정의에 맞게 응답 타입 수정이 필요합니다.
   @GetMapping
-  public List<ProductDto> findAll() {
-    return productService.findAll().stream()
+  public ApiResult<List<ProductDto>> findAll() {
+    List<ProductDto> dtoList = productService.findAll().stream()
       .map(ProductDto::new)
       .collect(toList());
-  }
 
+     return success(dtoList); 
+  }
 }
